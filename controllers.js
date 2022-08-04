@@ -7,7 +7,10 @@ app.controller('TodoCtrl', function ($scope, todoStorage) {
 
   $scope.add = function (newTodoTitle) {
     todoStorage.add(newTodoTitle);
-
     this.newTodoTitle = '';
+  };
+
+  $scope.update = function () {
+    todoStorage.update();
   };
 });

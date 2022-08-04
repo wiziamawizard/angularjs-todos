@@ -28,6 +28,9 @@ app.factory('todoStorage', function () {
       storage.todos.push(newTodo);
       storage._saveToLocalStorage(storage.todos);
     },
+    update: function () {
+      storage._saveToLocalStorage(storage.todos);
+    },
   };
 
   return storage;
