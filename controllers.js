@@ -1,40 +1,13 @@
-app.controller('TodoCtrl', function ($scope) {
-  $scope.todos = [
-    {
-      id: 1,
-      title: 'Java 복습',
-      completed: false,
-      createdAt: Date.now(),
-    },
-    {
-      id: 2,
-      title: 'AngularJS 인프런 강의 보기',
-      completed: false,
-      createdAt: Date.now(),
-    },
-    {
-      id: 3,
-      title: '운동',
-      completed: false,
-      createdAt: Date.now(),
-    },
-  ];
+app.controller('TodoCtrl', function ($scope, todoStorage) {
+  $scope.todos = todoStorage.get();
 
   $scope.delete = function (todo) {
-    const idx = $scope.todos.indexOf(todo);
-    $scope.todos.splice(idx, 1);
+    todoStorage.delete(todo);
   };
 
   $scope.add = function (newTodoTitle) {
-    const newTodo = {
-      id: $scope.todos.length + 1,
-      title: newTodoTitle,
-      completed: false,
-      createdAt: Date.now(),
-    };
+    todoStorage.add(newTodoTitle);
 
-    $scope.todos.push(newTodo);
-
-    $scope.newTodoTitle = '';
+    this.newTodoTitle = '';
   };
 });
